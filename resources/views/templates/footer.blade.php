@@ -61,7 +61,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/kas-rw') }}">
+                        <a href="{{ route('kas-rw') }}">
                             Informasi Kas RW
                         </a>
                     </li>

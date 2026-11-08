@@ -288,7 +288,11 @@
     </a>
 
     <a href="/admin/warga" class="menu">♙ Data Warga</a>
-    <a href="/admin/kas-rw" class="menu">▤ Kas RW</a>
+
+    <a href="{{ route('admin.kas.index') }}"
+       class="menu {{ request()->routeIs('admin.kas.*') ? 'active' : '' }}">
+        ▤ Kas RW
+    </a>
 
     <div class="menu-title">Konten Website</div>
 

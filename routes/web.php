@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JadwalRondaController;
 use App\Http\Controllers\Admin\BeritaController;
+use App\Http\Controllers\Admin\KasController;
 
 use App\Models\JadwalRonda;
 use App\Models\DokumentasiRonda;
@@ -55,17 +56,16 @@ Route::get('/berita/{slug}', [BeritaController::class, 'publicShow'])
     ->name('berita.show');
 
 // Agenda
-Route::view('/agenda', 'informasi.agenda')
+Route::view('/agenda', 'agenda.agenda')
     ->name('agenda');
 
-// Kas RW
-Route::view('/kas-rw', 'informasi.kas-rw')
+// Kas RW (halaman publik)
+Route::get('/kas-rw', [KasController::class, 'publicIndex'])
     ->name('kas-rw');
 
 // Statistik warga
 Route::view('/statistik-warga', 'informasi.statistik-warga')
     ->name('statistik-warga');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -339,4 +339,55 @@ Route::middleware(['auth'])
             'destroy'
         ])->name('admin.berita.destroy');
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | CRUD KAS RW
+        |--------------------------------------------------------------------------
+        */
+
+        // Daftar transaksi kas
+        Route::get('/kas-rw', [
+            KasController::class,
+            'index'
+        ])->name('admin.kas.index');
+
+
+        // Form tambah transaksi
+        Route::get('/kas-rw/create', [
+            KasController::class,
+            'create'
+        ])->name('admin.kas.create');
+
+
+        // Simpan transaksi
+        Route::post('/kas-rw', [
+            KasController::class,
+            'store'
+        ])->name('admin.kas.store');
+
+
+        // Form edit transaksi
+        Route::get('/kas-rw/{kas}/edit', [
+            KasController::class,
+            'edit'
+        ])->name('admin.kas.edit');
+
+
+        // Update transaksi
+        Route::put('/kas-rw/{kas}', [
+            KasController::class,
+            'update'
+        ])->name('admin.kas.update');
+
+
+        // Hapus transaksi
+        Route::delete('/kas-rw/{kas}', [
+            KasController::class,
+            'destroy'
+        ])->name('admin.kas.destroy');
+
     });
+
+    
+

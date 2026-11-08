@@ -453,7 +453,7 @@
 
                 <div class="col-lg-4 col-md-6 rw-news-item"
                      data-title="{{ strtolower($berita->judul) }}"
-                     data-description="{{ strtolower($berita->ringkasan ?? strip_tags($berita->isi)) }}">
+                     data-description="{{ strtolower($berita->ringkasan ?: strip_tags($berita->isi)) }}">
 
                     <a href="{{ route('berita.show', $berita->slug) }}"
                        class="rw-news-card">
@@ -608,7 +608,7 @@
 
             <div class="rw-news-pagination" id="rwNewsPagination">
 
-                {{ $beritas->links() }}
+                {{ $beritas->links('pagination::bootstrap-5') }}
 
             </div>
 

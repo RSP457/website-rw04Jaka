@@ -216,13 +216,13 @@
             </p>
         </div>
 
-        <a href="{{ route('admin.berita.create') }}"
+        <!--<a href="{{ route('admin.berita.create') }}"
            class="btn-add-berita">
 
             <i class="bi bi-plus-circle"></i>
             Tambah Berita
 
-        </a>
+        </a>-->
 
     </div>
 

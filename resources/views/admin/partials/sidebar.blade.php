@@ -88,8 +88,8 @@
         ♙ Data Warga
     </a>
 
-    <a class="menu {{ request()->is('admin/kas-rw*') ? 'active' : '' }}"
-       href="/admin/kas-rw">
+    <a class="menu {{ request()->routeIs('admin.kas.*') ? 'active' : '' }}"
+       href="{{ route('admin.kas.index') }}">
         ▤ Kas RW
     </a>
 

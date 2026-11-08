@@ -94,7 +94,7 @@ class BeritaController extends Controller
             $validated['status'] === 'terbit' &&
             empty($validated['tanggal_publikasi'])
         ) {
-            $validated['tanggal_publikasi'] = now()->toDateString();
+            $validated['tanggal_publikasi'] = today()->toDateString();
         }
 
         // Menyimpan ke database
@@ -196,7 +196,7 @@ class BeritaController extends Controller
             $validated['status'] === 'terbit' &&
             empty($validated['tanggal_publikasi'])
         ) {
-            $validated['tanggal_publikasi'] = now()->toDateString();
+            $validated['tanggal_publikasi'] = today()->toDateString();
         }
 
         // Update database
@@ -239,15 +239,7 @@ class BeritaController extends Controller
      */
     public function publicIndex()
     {
-        $beritas = Berita::where('status', 'terbit')
-            ->where(function ($query) {
-                $query->whereNull('tanggal_publikasi')
-                    ->orWhereDate(
-                        'tanggal_publikasi',
-                        '<=',
-                        now()->toDateString()
-                    );
-            })
+        $beritas = $this->publishedQuery()
             ->orderByDesc('tanggal_publikasi')
             ->orderByDesc('created_at')
             ->paginate(9);
@@ -260,21 +252,31 @@ class BeritaController extends Controller
      */
     public function publicShow($slug)
     {
-        $berita = Berita::where('slug', $slug)
-            ->where('status', 'terbit')
-            ->where(function ($query) {
-                $query->whereNull('tanggal_publikasi')
-                    ->orWhereDate(
-                        'tanggal_publikasi',
-                        '<=',
-                        now()->toDateString()
-                    );
-            })
+        $berita = $this->publishedQuery()
+            ->where('slug', $slug)
             ->firstOrFail();
 
         return view(
             'informasi.detail-berita',
             compact('berita')
         );
+    }
+
+    /**
+     * Query berita yang boleh tampil di halaman publik:
+     * status sudah "terbit" dan tanggal publikasi tidak melewati hari ini.
+     */
+    private function publishedQuery()
+    {
+        return Berita::query()
+            ->where('status', 'terbit')
+            ->where(function ($query) {
+                $query->whereNull('tanggal_publikasi')
+                    ->orWhereDate(
+                        'tanggal_publikasi',
+                        '<=',
+                        today()->toDateString()
+                    );
+            });
     }
 }

@@ -422,7 +422,7 @@
                         <small>Ringkasan data penduduk setiap RT</small>
                     </a>
 
-                    <a href="{{ url('/kas-rw') }}"
+                    <a href="{{ route('kas-rw') }}"
                        class="rw-dropdown-item">
                         <strong>Kas RW</strong>
                         <small>Informasi pemasukan dan pengeluaran kas</small>

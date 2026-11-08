@@ -294,7 +294,7 @@
                     <span>Kelola data warga RW 04</span>
                 </a>
 
-                <a class="quick-link" href="/admin/kas-rw">
+                <a class="quick-link" href="{{ route('admin.kas.index') }}">
                     Keuangan Kas
                     <span>Catat pemasukan dan pengeluaran</span>
                 </a>
