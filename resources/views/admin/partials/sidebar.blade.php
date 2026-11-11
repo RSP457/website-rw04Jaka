@@ -84,7 +84,7 @@
     </a>
 
     <a class="menu {{ request()->is('admin/warga*') ? 'active' : '' }}"
-       href="/admin/warga">
+       href="/admin/data-warga">
         ♙ Data Warga
     </a>
 

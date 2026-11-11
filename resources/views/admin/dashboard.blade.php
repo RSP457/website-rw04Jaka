@@ -289,7 +289,7 @@
 
             <div class="quick-links">
 
-                <a class="quick-link" href="/admin/warga">
+                <a class="quick-link" href="/admin/data-warga">
                     Data Warga
                     <span>Kelola data warga RW 04</span>
                 </a>

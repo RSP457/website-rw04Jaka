@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Admin RW 04')</title>
 
+    @stack('styles')
+
     <style>
         * {
             box-sizing: border-box;
@@ -287,7 +289,10 @@
         ▦ Dashboard
     </a>
 
-    <a href="/admin/warga" class="menu">♙ Data Warga</a>
+    <a href="{{ route('admin.data-warga.index') }}"
+       class="menu {{ request()->routeIs('admin.data-warga.*') ? 'active' : '' }}">
+        ♙ Data Warga
+    </a>
 
     <a href="{{ route('admin.kas.index') }}"
        class="menu {{ request()->routeIs('admin.kas.*') ? 'active' : '' }}">

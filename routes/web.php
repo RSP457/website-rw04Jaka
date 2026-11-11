@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JadwalRondaController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\KasController;
+use App\Http\Controllers\Admin\DataWargaController;
 
 use App\Models\JadwalRonda;
 use App\Models\DokumentasiRonda;
@@ -386,6 +387,53 @@ Route::middleware(['auth'])
             KasController::class,
             'destroy'
         ])->name('admin.kas.destroy');
+
+        /*
+        |--------------------------------------------------------------------------
+        | CRUD DATA WARGA
+        |--------------------------------------------------------------------------
+        */
+
+        // Daftar data warga
+        Route::get('/data-warga', [
+            DataWargaController::class,
+            'index'
+        ])->name('admin.data-warga.index');
+
+
+        // Form tambah data warga
+        Route::get('/data-warga/create', [
+            DataWargaController::class,
+            'create'
+        ])->name('admin.data-warga.create');
+
+
+        // Simpan data warga
+        Route::post('/data-warga', [
+            DataWargaController::class,
+            'store'
+        ])->name('admin.data-warga.store');
+
+
+        // Form edit data warga
+        Route::get('/data-warga/{dataWarga}/edit', [
+            DataWargaController::class,
+            'edit'
+        ])->name('admin.data-warga.edit');
+
+
+        // Update data warga
+        Route::put('/data-warga/{dataWarga}', [
+            DataWargaController::class,
+            'update'
+        ])->name('admin.data-warga.update');
+
+
+        // Hapus data warga
+        Route::delete('/data-warga/{dataWarga}', [
+            DataWargaController::class,
+            'destroy'
+        ])->name('admin.data-warga.destroy');
 
     });
 
