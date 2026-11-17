@@ -106,8 +106,8 @@
         ⚑ Pengumuman
     </a>
 
-    <a class="menu {{ request()->is('admin/agenda*') ? 'active' : '' }}"
-       href="/admin/agenda">
+    <a class="menu {{ request()->routeIs('admin.agenda.*') ? 'active' : '' }}"
+       href="{{ route('admin.agenda.index') }}">
         ▦ Agenda Kegiatan
     </a>
 

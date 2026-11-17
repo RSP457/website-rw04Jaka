@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\JadwalRondaController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\KasController;
 use App\Http\Controllers\Admin\DataWargaController;
+use App\Http\Controllers\Admin\AgendaController;
 
 use App\Models\JadwalRonda;
 use App\Models\DokumentasiRonda;
@@ -57,7 +58,7 @@ Route::get('/berita/{slug}', [BeritaController::class, 'publicShow'])
     ->name('berita.show');
 
 // Agenda
-Route::view('/agenda', 'agenda.agenda')
+Route::get('/agenda', [AgendaController::class, 'publicIndex'])
     ->name('agenda');
 
 // Kas RW (halaman publik)
@@ -434,6 +435,61 @@ Route::middleware(['auth'])
             DataWargaController::class,
             'destroy'
         ])->name('admin.data-warga.destroy');
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | CRUD AGENDA
+        |--------------------------------------------------------------------------
+        */
+
+        // Daftar agenda
+        Route::get('/agenda', [
+            AgendaController::class,
+            'index'
+        ])->name('admin.agenda.index');
+
+
+        // Form tambah agenda
+        Route::get('/agenda/create', [
+            AgendaController::class,
+            'create'
+        ])->name('admin.agenda.create');
+
+
+        // Simpan agenda
+        Route::post('/agenda', [
+            AgendaController::class,
+            'store'
+        ])->name('admin.agenda.store');
+
+
+        // Detail agenda
+        Route::get('/agenda/{agenda}', [
+            AgendaController::class,
+            'show'
+        ])->name('admin.agenda.show');
+
+
+        // Form edit agenda
+        Route::get('/agenda/{agenda}/edit', [
+            AgendaController::class,
+            'edit'
+        ])->name('admin.agenda.edit');
+
+
+        // Update agenda
+        Route::put('/agenda/{agenda}', [
+            AgendaController::class,
+            'update'
+        ])->name('admin.agenda.update');
+
+
+        // Hapus agenda
+        Route::delete('/agenda/{agenda}', [
+            AgendaController::class,
+            'destroy'
+        ])->name('admin.agenda.destroy');
 
     });
 
